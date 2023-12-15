@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { useMemo } from "react";
 import { useState } from "react";
 
@@ -65,39 +66,64 @@ const Submission = () => {
     setSuccess(true);
   };
 
+  const isSubmissionDisabled = useMemo(
+    () => !isValidPwd || !isMatching || success,
+    [isValidPwd, isMatching, success]
+  );
+
   return (
-    <div className="">
-      <input
-        data-testid="password"
-        value={password}
-        onChange={handlePasswordChange}
-        placeholder="Password"
-      />
-      <input
-        data-testid="password-confirm"
-        value={pwdConfirm}
-        onChange={handlePwdConfirmChange}
-        placeholder="Confirm Password"
-      />
-      {touched && !isMatching && (
-        <span data-testid="mismatching">Passwords don't match</span>
-      )}
-      {success && <span data-testid="success">Success</span>}
-      {touched && !success && (
-        <ul data-testid="validators">
-          {validations.map(({ key, status, description }) => (
-            <li key={key}>
-              {status ? "Success" : "Fail"} {description}
-            </li>
-          ))}
-        </ul>
-      )}
-      <button
-        disabled={!isValidPwd || !isMatching || success}
-        onClick={handleSubmit}
-      >
-        Submit
-      </button>
+    <div className="submission-dialog">
+      <header className="submission-header">
+        <h1>React Password Validator</h1>
+      </header>
+      <div className="submission-form">
+        <div className="submission-body">
+          <input
+            data-testid="password"
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder="Password"
+          />
+          <input
+            data-testid="password-confirm"
+            value={pwdConfirm}
+            onChange={handlePwdConfirmChange}
+            placeholder="Confirm Password"
+          />
+          {touched && !isMatching && (
+            <span data-testid="error" className="error">
+              <span className="error-icon" /> Passwords don't match
+            </span>
+          )}
+          {success && (
+            <span data-testid="success" className="success">
+              Success!
+            </span>
+          )}
+        </div>
+        {touched && !success && (
+          <div className="submission-validators" data-testid="validators">
+            <ul>
+              {validations.map(({ key, status, description }) => (
+                <li key={key} className={status ? "passing" : "failing"}>
+                  <span>{description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div className="submission-submit">
+          <button
+            className={classNames("submit-btn", {
+              disabled: isSubmissionDisabled,
+            })}
+            disabled={isSubmissionDisabled}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

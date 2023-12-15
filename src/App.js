@@ -1,12 +1,12 @@
-import "./App.css";
 import Submission from "./components/submission/submission";
+import "./styles/global.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <main className="app-body">
         <Submission />
-      </header>
+      </main>
     </div>
   );
 }
