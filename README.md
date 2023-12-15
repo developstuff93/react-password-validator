@@ -1,7 +1,6 @@
 # NOTE
 *This is deployed on vercel* - https://react-password-validator-sigma.vercel.app/
-
-![Alt text](image.png)
+<img src="image.png" alt="Password Validation Screenshot" width="500px" />
 
 # Getting Started with Create React App
 
