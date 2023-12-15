@@ -1,8 +1,9 @@
+# NOTE
+*This is deployed on vercel* - https://react-password-validator-sigma.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-This is deployed on vercel - https://react-password-validator-sigma.vercel.app/
 
 ## Available Scripts
 
