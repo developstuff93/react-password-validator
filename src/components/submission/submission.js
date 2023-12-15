@@ -2,33 +2,9 @@ import classNames from "classnames";
 import React, { useMemo } from "react";
 import { useState } from "react";
 
-const Validators = [
-  {
-    key: "minLength",
-    validator: /^.{6,}$/,
-    description: "At least 6 characters",
-  },
-  {
-    key: "uppercase",
-    validator: /[A-Z]/,
-    description: "At least 1 uppercase character",
-  },
-  {
-    key: "lowercase",
-    validator: /[a-z]/,
-    description: "At least 1 lowercase character",
-  },
-  {
-    key: "number",
-    validator: /\d/,
-    description: "At least 1 number",
-  },
-  {
-    key: "speical",
-    validator: /[!@#$%^&*()_\-+={[}\]|:;"'<,>.]/,
-    description: `At least 1 special character (!@#$%^&*()_-+={[}]|:;"'<,>.)`,
-  },
-];
+import Validator from "../validator/validator";
+
+import { Validators } from "../../utils";
 
 const Submission = () => {
   const [touched, setTouched] = useState(false);
@@ -101,17 +77,7 @@ const Submission = () => {
             </span>
           )}
         </div>
-        {touched && !success && (
-          <div className="submission-validators" data-testid="validators">
-            <ul>
-              {validations.map(({ key, status, description }) => (
-                <li key={key} className={status ? "passing" : "failing"}>
-                  <span>{description}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {touched && !success && <Validator validations={validations} />}
         <div className="submission-submit">
           <button
             className={classNames("submit-btn", {
