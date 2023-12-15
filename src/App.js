@@ -1,4 +1,4 @@
-import Submission from "./components/submission/submission";
+import Submission from "./components/submission";
 import "./styles/global.scss";
 
 function App() {

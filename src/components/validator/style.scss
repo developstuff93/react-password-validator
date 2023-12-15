@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.validators {
+  margin-top: $spacing;
+  border: 1px solid #c2c8d0;
+  border-radius: 3px;
+  text-align: left;
+  padding: 14px 16px;
+
+  &-list {
+    list-style: none;
+    padding: 0;
+    margin: $spacing 0 0;
+  }
+
+  li {
+    margin-bottom: $spacing;
+    margin-left: $spacing-3;
+    position: relative;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: -24px;
+      font-size: 16px;
+      text-align: right;
+      width: 10px;
+      height: 10px;
+    }
+
+    &.passing {
+      color: #1c707d;
+
+      &::before {
+        content: "✓";
+      }
+    }
+  }
+}

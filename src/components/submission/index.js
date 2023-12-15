@@ -2,9 +2,11 @@ import classNames from "classnames";
 import React, { useMemo } from "react";
 import { useState } from "react";
 
-import Validator from "../validator/validator";
+import Validator from "../validator";
 
 import { Validators } from "../../utils";
+import Input from "../input";
+import "./style.scss";
 
 const Submission = () => {
   const [touched, setTouched] = useState(false);
@@ -54,13 +56,15 @@ const Submission = () => {
       </header>
       <div className="submission-form">
         <div className="submission-body">
-          <input
+          <Input
+            type="password"
             data-testid="password"
             value={password}
             onChange={handlePasswordChange}
             placeholder="Password"
           />
-          <input
+          <Input
+            type="password"
             data-testid="password-confirm"
             value={pwdConfirm}
             onChange={handlePwdConfirmChange}
